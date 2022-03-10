@@ -7,6 +7,7 @@ import {
   Param,
   Body,
   HttpCode,
+  ParseUUIDPipe
 } from '@nestjs/common';
 import {ReportType } from './data';
 import { AppService } from './app.service';
@@ -23,7 +24,7 @@ export class AppController {
   }
 
   @Get(':id')
-  getReportById(@Param('type') type: string, @Param('id') id: string) {
+  getReportById(@Param('type') type: string, @Param('id', ParseUUIDPipe) id: string) {
     const reportType =
       type === 'income' ? ReportType.INCOME : ReportType.EXPENSE;
     return this.appService.getReportById(reportType, id);
