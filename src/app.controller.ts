@@ -43,7 +43,7 @@ export class AppController {
   @Put(':id')
   updateReport(
     @Param('type') type: string,
-    @Param('id') id: string,
+    @Param('id', ParseUUIDPipe) id: string,
     @Body() body: { amount: number; source: string },
   ) {
     const reportType =
